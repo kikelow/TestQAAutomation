@@ -1,15 +1,13 @@
 package co.com.validaTest.config;
 
+import co.com.validaTest.utils.Constants;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverManager {
 
@@ -35,14 +33,14 @@ public class DriverManager {
     private WebDriver getDriverInstance(String browser){
         WebDriver driver = null;
         switch(browser.toUpperCase()){
-            case "CHROME" :
+            case Constants.BROWSER_CHROME :
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/Utils/drivers/chrome/chromedriver.exe");
                 ChromeOptions chromeOption = new ChromeOptions();
                 chromeOption.addArguments("incognito");
                 chromeOption.addArguments("disable-popup-blocking");
                  driver = new ChromeDriver(chromeOption);
                 break;
-            case "EDGE" :
+            case Constants.BROWSER_EDGE:
                 System.setProperty("webdriver.edge.driver", "src/test/resources/Utils/drivers/edge/msedgedriver.exe");
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.setCapability("InPrivate", true);

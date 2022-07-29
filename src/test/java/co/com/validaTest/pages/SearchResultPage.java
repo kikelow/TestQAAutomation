@@ -17,6 +17,9 @@ public class SearchResultPage {
     @FindBy(xpath = "//div[@id='toc']/child::ul/child::li//span[@class='toctext']")
     private List<WebElement> listIndice;
 
+    @FindBy(xpath = "//li[@id='n-mainpage-description']//a")
+    private WebElement linkPortada;
+
 
     private WebDriver driver;
 
@@ -36,5 +39,9 @@ public class SearchResultPage {
             listTextIndices.add(webElement.getText());
         }
         return listTextIndices;
+    }
+
+    public void clikOnLinkPortada(){
+        linkPortada.click();
     }
 }

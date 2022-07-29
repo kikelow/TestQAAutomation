@@ -48,18 +48,22 @@ public class CreateAccountPage {
     }
 
     public void inputPasswordConfirmation(String password){
-        txtConfirmPassword.sendKeys();
+        txtConfirmPassword.sendKeys(password);
+    }
+
+    public void inputEmail(String email){
+        txtEmail.sendKeys(email);
     }
 
     public String getTextDivWrongPassword(){
-        WebElement divWrongPassword = driver.findElement(By.xpath("//input[@id='wpPassword2']/following-sibling::div"));
-        Waits.waitExplict(driver,divWrongPassword);
+        Waits.waitForElemenPresent(driver,By.xpath("//input[@id='wpPassword2']/following-sibling::div[contains(@class,'error')]"));
+        WebElement divWrongPassword = driver.findElement(By.xpath("//input[@id='wpPassword2']/following-sibling::div[contains(@class,'error')]"));
         return divWrongPassword.getText();
     }
 
     public String getTextDivWrongUser(){
-        WebElement divWrongUser = driver.findElement(By.xpath("//input[@id='wpPassword2']/following-sibling::div"));
-        Waits.waitExplict(driver,divWrongUser);
+        Waits.waitForElemenPresent(driver,By.xpath("//input[@id='wpName2']/following-sibling::div[contains(@class,'error')]"));
+        WebElement divWrongUser = driver.findElement(By.xpath("//input[@id='wpName2']/following-sibling::div[contains(@class,'error')]"));
         return divWrongUser.getText();
     }
 }

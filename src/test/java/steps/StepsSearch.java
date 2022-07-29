@@ -6,6 +6,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
+import io.cucumber.java.es.Y;
 import org.junit.After;
 
 public class StepsSearch {
@@ -22,6 +23,8 @@ public class StepsSearch {
     public void que_Necesito_Realizar_Una_Busqueda_En_Wikipedia(String browser, String url) {
         driverManager.launchBroser(browser, url);
         bussinesController.validateAccessAHomePage(driverManager.getDriver());
+        bussinesController.changeToMobileWebview(driverManager.getDriver());
+        bussinesController.changeToDesktopWebview(driverManager.getDriver());
     }
 
     @Cuando("^digite en el buscador la palabra (.*)$")
@@ -30,7 +33,7 @@ public class StepsSearch {
         bussinesController.validateAccessPageResult(driverManager.getDriver());
     }
 
-    @Entonces("^encontrare el titulo propuesto para la busqueda$")
+    @Y("^encuentre el titulo propuesto para la busqueda$")
     public void encontrare_El_Titulo_Propuesto_Para_La_Busqueda() {
         bussinesController.validateTitleIndice(driverManager.getDriver());
     }
@@ -41,4 +44,24 @@ public class StepsSearch {
         driverManager.closeBrowser();
     }
 
+    @Y("vuelva a la pagina principal")
+    public void vuelvaALaPaginaPrincipal() {
+        bussinesController.goToWelcomePage(driverManager.getDriver());
+    }
+
+    @Y("hago click sobre la opcion ver historial")
+    public void hagoClickSobreLaOpcionVerHistorial() {
+        bussinesController.gotoHistotySection(driverManager.getDriver());
+        bussinesController.validateAccessToHistoryPage(driverManager.getDriver());
+    }
+
+    @Y("selecciono dos revisiones")
+    public void seleccionoDosRevisiones() {
+        bussinesController.selectOptionsFromHistory(driverManager.getDriver());
+    }
+
+    @Entonces("le dare click al boton comparar revisiones")
+    public void leDareClickAlBotonCompararRevisiones() {
+        bussinesController.compareSelectedReviews(driverManager.getDriver());
+    }
 }

@@ -60,5 +60,4 @@ public class HomePage {
         Waits.waitExplict(driver,txtSearch);
         txtSearch.sendKeys(Keys.ENTER);
     }
-
 }
